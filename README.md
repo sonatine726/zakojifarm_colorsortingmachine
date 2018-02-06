@@ -1,6 +1,4 @@
-# README #
-
-This README would normally document whatever steps are necessary to get your application up and running.
+お米の座光寺農園 穀物用小型色彩選別機
 
 ### What is this repository for? ###
 
