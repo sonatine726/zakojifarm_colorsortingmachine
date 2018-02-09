@@ -10,8 +10,8 @@ img = cv2.imread(sys.argv[1])
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 
-#img = cv2.adaptiveThreshold(img,255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11 ,2)
-#ret,gray = cv2.threshold(img,96,255,cv2.THRESH_BINARY)
+img = cv2.adaptiveThreshold(img,255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11 ,2)
+ret,gray = cv2.threshold(img,96,255,cv2.THRESH_BINARY)
 
 gray = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY )[1]
 label = cv2.connectedComponentsWithStats(gray)
