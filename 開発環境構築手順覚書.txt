@@ -1,0 +1,68 @@
+テスト用のプログラムを動かすまでの手順を整理
+
+≪環境≫
+　H/W
+　　Raspberry Pi 3 Model B V1.2
+　　Raspberry Pi Camera V2.1
+　　USBキーボード＆USBマウス
+　　モニタ（HDMI接続）
+　OS
+　　RASPBIAN STRETCH WITH DESKTOP
+　　　Version:　November 2017
+　　　Release date:　2017-11-29
+　　　Kernel version:　4.9
+　　<https://www.raspberrypi.org/downloads/raspbian/>
+
+■セットアップ手順■
+１．起動
+　OSをmicroSDに入れて、キーボード、マウス、モニタを接続し電源ON
+　モニタにデスクトップの画面が表示されマウスで操作できるようなら成功
+
+２．環境のセットアップ
+　とりあえず以下を行う　方法は別資料を参照
+　　・キーボードの設定
+　　・ネットワークの設定
+　　・Piカメラを有効に設定
+
+３．ライブラリのインストール
+　左上のアイコンからTerminalを起動する　以下コンソールで作業
+
+　３－１　apt-getを最新にする
+　　>pi@raspberry:~ S sudo apt-get update
+    >pi@raspberry:~ S sudo apt-get upgrade
+
+　３－２　OpnenCVをインストール
+　　>pi@raspberry:~ S sudo apt-get install python-opencv　
+　　>pi@raspberry:~ S sudo apt-get install python-numpy
+
+　３－３　Piカメラのライブラリをインストール
+　　>pi@raspberry:~ S sudo apt-get install python-picamera
+
+　！注意！
+　　2018年2月10日時点では上記インストールは2系のpython用
+　　3系のpythonでは動かない
+
+４．テストプログラムを動作させる
+　４－１カメラの動作確認
+　　カメラで写真を撮って以降のサンプルプログラムの入力ファイルを準備します
+　　コンソールで以下のコマンドを実行する
+　　>pi@raspberry:~ S raspistill -o image.jpg
+
+　　画面に5秒ほどカメラからの画像が表示され作業フォルダに”image.jpg”ができていれば成功
+
+　４－２　Opencvテストプログラムの実行
+　　コンソールで以下のコマンドを実行する
+　　>pi@raspberry:~ S python opencvtest.py image.jpg
+
+　　画面に先ほどの４－１で撮影した画像が640x480にリサイズされ白黒で表示されれば成功
+
+　　メモ：SSHで他のPCから操作していた場合、[(OpenCV TEST:1019): Gtk-WARNING **: cannot open display:]と表示されエラーになる場合がある
+　　　　　ラズパイのコンソールから実行すればちゃんと動くはず
+
+　４－３　PiCameraテストプログラムの実行
+　　コンソールで以下のコマンドを実行する
+　　>pi@raspberry:~ S python picameratest.py
+
+　　画面に5秒間カメラ映像がプレビュー表示されれば成功
+
+
